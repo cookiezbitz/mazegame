@@ -15,7 +15,12 @@ int startemp; // temporary variable for star, before confirming it is collected
 boolean playermove = true; // allows or disallows  player movement
 
 float killlaserposx; // the x and y variables of the laser found in stage 3
+float killlaserposx2; // the x and y variables of the laser found in stage 3
+float killlaserposx3; // the x and y variables of the laser found in stage 3
 float killlaserposy;
+
+boolean touchedwall;
+color wallcolor = #432B2B;
 
 
 void setup() {
@@ -23,7 +28,9 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 2;
+  stage = 3;
+  killlaserposx2 = 540;
+  killlaserposx3 = 890;
 
 }
 void draw() {
@@ -31,9 +38,7 @@ void draw() {
   background(255);
   fill(0);
 
-//spawns the circle
-  circle(thingyposx, thingyposy, 20);
-    customPress(); // calls the custompress function
+
   
 
 //timer code
@@ -188,18 +193,51 @@ void draw() {
     
     //kill lasers
     fill(#FF0303);
-    
-    rect(killlaserposx,killlaserposy,100,10);
+    killlaserposy = 300;
+    rect(killlaserposx,killlaserposy,10,200);
+    rect(killlaserposx2,killlaserposy,10,200);
+    rect(killlaserposx3,killlaserposy,10,200);
     //function for kill lasers goes here
     
-    for(int i=1100;i<300;i--){
-      killlaserposx = i;
-      if(i<320){
-       i = 1100; 
-      }
-      
+    killlaserposx--;
+    
+    if(killlaserposx<320){
+      killlaserposx = 1100;
+    }
+        killlaserposx2--;
+    
+    if(killlaserposx2<320){
+      killlaserposx2 = 1100;
     }
     
+        killlaserposx3--;
+    
+    if(killlaserposx3<320){
+      killlaserposx3 = 1100;
+    }
+    
+    if(wallcolor == get(int(thingyposx),int(thingyposy))){
+            spawned = false;
+      deaths++;
+      startemp = 0;
+    }
+    
+    
+
+            if (circleRect(thingyposx, thingyposy, 5, killlaserposx,killlaserposy,10,200) == true || circleRect(thingyposx, thingyposy, 5, killlaserposx2,killlaserposy,10,200)
+        || circleRect(thingyposx, thingyposy, 5, killlaserposx3,killlaserposy,10,200)) {
+      spawned = false;
+      deaths++;
+      startemp = 0;
+    }
+    
+            if (circleRect(thingyposx, thingyposy, 20, 1100, 350, 100, 100) == true) {
+      stage = 4;
+      stars = stars+startemp;
+      startemp = 0;
+      spawned = false;
+      println(stars);
+    }
     
     
     //other future stages here
@@ -228,5 +266,8 @@ void draw() {
     text("Deaths: " + (deaths), 410,60);
   text("Stage:" + (stage), 410, 90);
 
+//spawns the circle
+  circle(thingyposx, thingyposy, 20);
+    customPress(); // calls the custompress function
 
 }
