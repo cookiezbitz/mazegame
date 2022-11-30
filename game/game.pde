@@ -135,7 +135,7 @@ void draw() {
     fill(#2efe2e);
     rect(1100, 0, 100, 100);
     
-    //blue square for start
+    //blue square for star
     fill(#110AFA);
         rect(300, 720, 100, 100);
    // println(mouseX, " ", mouseY);
@@ -257,11 +257,11 @@ void draw() {
       spawned = true;
     }
     
-            fill(#2efe2e);
-    rect(0, 0, 20, 800);
-        rect(0, 0, 1200, 20);
-    rect(1180, 0, 20, 800);
-          rect(0, 780, 1200, 20);  
+            fill(#110AFA);
+    rect(0, 0, 100, 100);
+        rect(1100, 700, 100, 100);
+    rect(1100, 0, 100, 100);
+          rect(0, 700, 100, 100);  
           
          fill(#432B2B);
     triangle(180,150, 180,450, 450,150);
@@ -287,6 +287,16 @@ void draw() {
      evilcircleposy = evilcircleposy + evilcirclespeed; 
     }
     
+    
+    //adds star
+                    if (circleRect(thingyposx, thingyposy, 20, 0, 0, 100, 100) == true||
+                    circleRect(thingyposx, thingyposy, 20, 1100, 700, 100, 100) == true ||
+                    circleRect(thingyposx, thingyposy, 20, 1100, 0, 100, 100) == true ||
+                    circleRect(thingyposx, thingyposy, 20, 0, 700, 100, 100) == true) {
+
+       startemp++;
+      println("star added");
+    }
     
     
   } else if (stage == 5) {
