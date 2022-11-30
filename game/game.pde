@@ -19,6 +19,9 @@ float killlaserposx2; // the x and y variables of the laser found in stage 3
 float killlaserposx3; // the x and y variables of the laser found in stage 3
 float killlaserposy;
 
+float evilcircleposx;
+float evilcircleposy;
+
 boolean touchedwall;
 color wallcolor = #432B2B;
 
@@ -28,7 +31,7 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 3;
+  stage = 0;
   killlaserposx2 = 540;
   killlaserposx3 = 890;
 
@@ -243,8 +246,37 @@ void draw() {
     //other future stages here
     
   } else if (stage == 4) {
-    //asked for money
-    //this is a goodbye option
+
+      //spawns the player if not spawned
+    if (!spawned) {
+      thingyposx = 600;
+      thingyposy = 400;
+      playermove = false;
+      spawned = true;
+    }
+    
+            fill(#2efe2e);
+    rect(0, 0, 20, 800);
+        rect(0, 0, 1200, 20);
+    rect(1180, 0, 20, 800);
+          rect(0, 780, 1200, 20);  
+          
+         fill(#432B2B);
+    triangle(180,150, 180,450, 450,150);
+    triangle(1000,650, 1000,350, 650,650);
+        triangle(1000,100, 1000,300, 500,150);
+    triangle(100,690, 100,500, 615,690);
+    rect(380,0,240,120);
+    println(mouseX,mouseY);
+    
+    //makes a bot
+    fill(#B20B0B);
+    circle(evilcircleposx,evilcircleposy, 40);
+   // evilcircleposx = 
+    
+    
+    
+    
   } else if (stage == 5) {
     //Frigreetingly goodbye
   } else if (stage == 6) {
