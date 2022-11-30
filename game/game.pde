@@ -31,9 +31,11 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 0;
+  stage = 4;
   killlaserposx2 = 540;
   killlaserposx3 = 890;
+  evilcircleposx = 400;
+  evilcircleposy = 400;
 
 }
 void draw() {
@@ -269,11 +271,21 @@ void draw() {
     rect(380,0,240,120);
     println(mouseX,mouseY);
     
+    
+    float evilcirclespeed = 3;
     //makes a bot
     fill(#B20B0B);
     circle(evilcircleposx,evilcircleposy, 40);
-   // evilcircleposx = 
-    
+   if(evilcircleposx>thingyposx){
+    evilcircleposx = evilcircleposx - evilcirclespeed;
+   } else{
+    evilcircleposx = evilcircleposx + evilcirclespeed;
+   }
+    if(evilcircleposy>thingyposy){
+     evilcircleposy = evilcircleposy - evilcirclespeed; 
+    }else{
+     evilcircleposy = evilcircleposy + evilcirclespeed; 
+    }
     
     
     
