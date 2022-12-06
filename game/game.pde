@@ -19,6 +19,8 @@ float killlaserposx2; // the x and y variables of the laser found in stage 3
 float killlaserposx3; // the x and y variables of the laser found in stage 3
 float killlaserposy;
 
+boolean shiftallow;
+
 float evilcircleposx;
 float evilcircleposy;
 
@@ -29,6 +31,14 @@ boolean square4touch = true;
 
 boolean touchedwall;
 color wallcolor = #432B2B;
+
+float hp = 100;
+color c1 = color(0, 255, 0);
+color c2 = color(255, 0, 0);
+color barcolor;
+float healthbarlength = 200;
+float amt;
+boolean overburn = true;
 
 
 void setup() {
@@ -47,6 +57,18 @@ void draw() {
 
   background(255);
   fill(0);
+  
+
+  textSize(20);
+  text(hp, 380, 270);
+  fill(255);
+
+  rect(295, 300, 210, 30);
+  barcolor = lerpColor(c2, c1, amt);
+  amt = map(hp, 0, 100, 0, 1);
+  fill(barcolor);
+  rect(300, 305, healthbarlength, 20);
+  
 
 
   
