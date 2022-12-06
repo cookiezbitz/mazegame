@@ -22,6 +22,11 @@ float killlaserposy;
 float evilcircleposx;
 float evilcircleposy;
 
+boolean square1touch = true;
+boolean square2touch = true;
+boolean square3touch = true;
+boolean square4touch = true;
+
 boolean touchedwall;
 color wallcolor = #432B2B;
 
@@ -255,13 +260,24 @@ void draw() {
       thingyposy = 400;
       playermove = false;
       spawned = true;
+
+      
     }
     
+
             fill(#110AFA);
+    if(square1touch==true){
     rect(0, 0, 100, 100);
+    }
+    if(square2touch==true){
         rect(1100, 700, 100, 100);
+    }
+    if(square3touch==true){
     rect(1100, 0, 100, 100);
+    }
+    if(square4touch==true){
           rect(0, 700, 100, 100);  
+    }
           
          fill(#432B2B);
     triangle(180,150, 180,450, 450,150);
@@ -288,16 +304,69 @@ void draw() {
     }
     
     
-    //adds star
-                    if (circleRect(thingyposx, thingyposy, 20, 0, 0, 100, 100) == true||
-                    circleRect(thingyposx, thingyposy, 20, 1100, 700, 100, 100) == true ||
-                    circleRect(thingyposx, thingyposy, 20, 1100, 0, 100, 100) == true ||
-                    circleRect(thingyposx, thingyposy, 20, 0, 700, 100, 100) == true) {
-
-       startemp++;
-      println("star added");
+    if(square1touch == true){
+     if( circleRect(thingyposx, thingyposy, 20, 0, 0, 100, 100) == true){
+      square1touch = false;
+      startemp++;
+            println("star added");
+      fill(255);
+      rect(0,0,100,100);
+     }
+      
+    }
+        if(square2touch == true){
+     if( circleRect(thingyposx, thingyposy, 20,1100, 700, 100, 100) == true){
+      square2touch = false;
+      startemp++;
+            println("star added");
+      fill(255);
+      rect(1100, 700, 100, 100);
+     }
+      
+    }
+            if(square3touch == true){
+     if( circleRect(thingyposx, thingyposy, 20,1100, 0, 100, 100) == true){
+      square3touch = false;
+      startemp++;
+            println("star added");
+      fill(255);
+      rect(1100, 0, 100, 100);
+     }
+      
     }
     
+                if(square4touch == true){
+     if( circleRect(thingyposx, thingyposy, 20,0, 700, 100, 100) == true){
+      square4touch = false;
+      startemp++;
+            println("star added");
+      fill(255);
+      rect(0, 700, 100, 100);
+     }
+      
+    }
+        if(wallcolor == get(int(thingyposx),int(thingyposy))){
+            spawned = false;
+      deaths++;
+      startemp = 0;
+            square1touch=true;
+      square2touch=true;
+      square3touch=true;
+      square4touch=true;
+    }
+    
+    
+    if(startemp == 4){
+      fill(#2efe2e);
+      rect(550,350,100,100);
+                  if (circleRect(thingyposx, thingyposy, 20,550,350,100,100) == true) {
+      stage = 5;
+      stars = stars+startemp;
+      startemp = 0;
+      spawned = false;
+      println(stars);
+    }
+    }
     
   } else if (stage == 5) {
     //Frigreetingly goodbye
