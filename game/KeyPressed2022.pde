@@ -22,7 +22,7 @@ void customPress() {
 }
 
   if(shiftallow==true){
-  if(keysDown.contains(16)){ //shift
+  if(keysDown.contains(16) ){ //shift
   if(overburn == false){
     speed = 6.27;
     hp--;

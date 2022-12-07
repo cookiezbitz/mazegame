@@ -24,6 +24,7 @@ boolean shiftallow;
 float evilcircleposx;
 float evilcircleposy;
 
+boolean square0touch = true;
 boolean square1touch = true;
 boolean square2touch = true;
 boolean square3touch = true;
@@ -46,7 +47,7 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 4;
+  stage = 0;
   killlaserposx2 = 540;
   killlaserposx3 = 890;
   evilcircleposx = 400;
@@ -60,14 +61,11 @@ void draw() {
   
 
   textSize(20);
+  /*
   text(hp, 380, 270);
   fill(255);
+*/
 
-  rect(295, 300, 210, 30);
-  barcolor = lerpColor(c2, c1, amt);
-  amt = map(hp, 0, 100, 0, 1);
-  fill(barcolor);
-  rect(300, 305, healthbarlength, 20);
   
 
 
@@ -278,8 +276,8 @@ void draw() {
 
       //spawns the player if not spawned
     if (!spawned) {
-      thingyposx = 600;
-      thingyposy = 400;
+      thingyposx = random(400,600);
+      thingyposy = random(300,500);
       playermove = false;
       spawned = true;
 
@@ -377,6 +375,16 @@ void draw() {
       square4touch=true;
     }
     
+    if(circleCircle(thingyposx,thingyposy,10,evilcircleposx,evilcircleposy,10) == true){
+                  spawned = false;
+      deaths++;
+      startemp = 0;
+                  square1touch=true;
+      square2touch=true;
+      square3touch=true;
+      square4touch=true;
+    }
+    
     
     if(startemp == 4){
       fill(#2efe2e);
@@ -410,8 +418,16 @@ void draw() {
   text("Stars: " + (stars+ startemp), 410,30);
     text("Deaths: " + (deaths), 410,60);
   text("Stage:" + (stage), 410, 90);
+  
+  
+  rect(150, 50, 210, 30);
+  barcolor = lerpColor(c2, c1, amt);
+  amt = map(hp, 0, 100, 0, 1);
+  fill(barcolor);
+  rect(155, 55, healthbarlength, 20);
 
 //spawns the circle
+  fill(#34D32D);
   circle(thingyposx, thingyposy, 20);
     customPress(); // calls the custompress function
 
