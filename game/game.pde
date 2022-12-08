@@ -145,6 +145,11 @@ void draw() {
       spawned = true;
     }
     
+                fill(#110AFA);
+    if(square0touch==true){
+    rect(300, 720, 100, 100);
+    }
+    
     
     //makes the kill rects
     fill(#FF0000);
@@ -160,11 +165,14 @@ void draw() {
     fill(#2efe2e);
     rect(1100, 0, 100, 100);
     
+    
+    /*
     //blue square for star
     fill(#110AFA);
         rect(300, 720, 100, 100);
    // println(mouseX, " ", mouseY);
     
+    */
     
     //function to kill the player when the player touches the kill rect
         if (circleRect(thingyposx, thingyposy, 20, 100,0,500,400) == true || circleRect(thingyposx, thingyposy, 20, 0,500,300,300)
@@ -175,10 +183,17 @@ void draw() {
       startemp = 0;
     }
     //function to add a star to the player when the player touches the blue square
-                if (circleRect(thingyposx, thingyposy, 20, 300, 720, 100, 100) == true) {
-
-       startemp = 1;
-      println("star added");
+    println(mouseX,mouseY);
+    //problem identified. you change the pos of the square to match stage 2
+    if(square0touch == true){
+     if( circleRect(thingyposx, thingyposy, 20, 300, 720, 100, 100) == true){
+      square0touch = false;
+      startemp++;
+            println("star added");
+      fill(255);
+      rect(300, 720,100,100);
+     }
+      
     }
     
     //moves the player to the next stage, cashes out the star.
