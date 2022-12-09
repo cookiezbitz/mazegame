@@ -50,15 +50,21 @@ float circlerad5 = 99;
 
 float bosslevelopening1;
 float bosslevelopening2;
+float bosslevelopening2h;
 float bosslevelopening3;
+float bosslevelopening3h;
 float bosslevelopening4;
+float bosslevelopening4h;
 
 float bosslevelopeningspeed;
 
 boolean movebosslevelopening1;
 boolean movebosslevelopening2;
+boolean movebosslevelopening2h;
 boolean movebosslevelopening3;
+boolean movebosslevelopening3h;
 boolean movebosslevelopening4;
+boolean movebosslevelopening4h;
 
 
 float hp = 100;
@@ -639,6 +645,9 @@ void draw() {
       bosslevelopening2 = -1;
       bosslevelopening3 = -1;
       bosslevelopening4 = -1;
+            bosslevelopening2h = 849;
+      bosslevelopening3h = -1;
+      bosslevelopening4h = -1;
       bosslevelopeningspeed = 1;
       
       //TESTING CODE
@@ -681,11 +690,16 @@ void draw() {
     
     }
     
+    
+    
+    
+    
+    
     //code for moving door thing
     if(bosslevelopening1<=0){
       movebosslevelopening1 = true;
     }
-    if(bosslevelopening1 >=800){
+    if(bosslevelopening1 >=485 ){
      movebosslevelopening1 = false; 
     }
     if(movebosslevelopening1 ==true){
@@ -693,6 +707,65 @@ void draw() {
     } else{
      bosslevelopening1 -= bosslevelopeningspeed; 
     }
+    
+    //2ND ROW OF DOORS
+    
+        if(bosslevelopening2<=0){
+      movebosslevelopening2 = true;
+    }
+    if(bosslevelopening2 >=335){
+     movebosslevelopening2 = false; 
+    }
+    if(movebosslevelopening2 ==true){
+     bosslevelopening2+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening2 -= bosslevelopeningspeed; 
+    }
+    
+    
+            if(bosslevelopening2h<=850){
+      movebosslevelopening2h = true;
+    }
+    if(bosslevelopening2h >=1185){
+     movebosslevelopening2h = false; 
+    }
+    if(movebosslevelopening2h ==true){
+     bosslevelopening2h+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening2h -= bosslevelopeningspeed; 
+    }
+    //2ND ROW OF DOORS
+    //3RD ROW OF DOOR
+            if(bosslevelopening2<=0){
+      movebosslevelopening2 = true;
+    }
+    if(bosslevelopening2 >=335){
+     movebosslevelopening2 = false; 
+    }
+    if(movebosslevelopening2 ==true){
+     bosslevelopening2+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening2 -= bosslevelopeningspeed; 
+    }
+    
+    
+            if(bosslevelopening2h<=850){
+      movebosslevelopening2h = true;
+    }
+    if(bosslevelopening2h >=1185){
+     movebosslevelopening2h = false; 
+    }
+    if(movebosslevelopening2h ==true){
+     bosslevelopening2h+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening2h -= bosslevelopeningspeed; 
+    }
+    
+    
+    
+    
+    
+    
     
     
           if(bosslevelbegin == true){
@@ -710,7 +783,12 @@ void draw() {
         fill(255);
         
         rect(850,bosslevelopening1,10,30);
-        
+          rect(bosslevelopening2,300,30,10);
+                    rect(bosslevelopening2h,300,30,10);
+                  rect(850,bosslevelopening3,10,30);
+                          rect(850,bosslevelopening4,10,30);
+                          
+
     println(mouseX,mouseY);
     
       }
