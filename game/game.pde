@@ -30,8 +30,20 @@ boolean square2touch = true;
 boolean square3touch = true;
 boolean square4touch = true;
 
+boolean smallcircle1;
+boolean smallcircle2;
+boolean smallcircle3;
+boolean smallcircle4;
+boolean smallcircle5;
+
 boolean touchedwall;
 color wallcolor = #432B2B;
+
+float circlerad1 = 300;
+float circlerad2 = 40;
+float circlerad3 = 150;
+float circlerad4 = 250;
+float circlerad5 = 99;
 
 float hp = 100;
 color c1 = color(0, 255, 0);
@@ -47,7 +59,7 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 0;
+  stage = 5;
   killlaserposx2 = 540;
   killlaserposx3 = 890;
   evilcircleposx = 400;
@@ -320,7 +332,7 @@ void draw() {
         triangle(1000,100, 1000,300, 500,150);
     triangle(100,690, 100,500, 615,690);
     rect(380,0,240,120);
-    println(mouseX,mouseY);
+//    println(mouseX,mouseY);
     
     
     float evilcirclespeed = 3;
@@ -413,8 +425,127 @@ void draw() {
     }
     }
     
+    
+    //stage 5 begins
   } else if (stage == 5) {
-    //Frigreetingly goodbye
+    
+        if (!spawned) {
+          float puppy = int(random(1,2));
+          if(puppy == 1){
+      thingyposx = 600;
+      thingyposy = 150;
+          } else{
+            thingyposx = 200;
+            thingyposy = 400;
+      playermove = false;
+      spawned = true;
+    }
+             fill(#432B2B);
+    rect(380,0,240,120);
+            if(wallcolor == get(int(thingyposx),int(thingyposy))){
+            spawned = false;
+      deaths++;
+      startemp = 0;
+    }
+    
+    
+    //circlefunction
+    
+    if(circlerad1<40){
+     smallcircle1 = true; 
+    }
+    if(circlerad1>300){
+      smallcircle1 = false;
+    }   
+    if(smallcircle1 == true){
+     circlerad1++;
+    }else{
+     circlerad1--; 
+    }
+    circle(700,400,circlerad1);
+    
+    //circlefunction
+    
+        if(circlerad2<40){
+     smallcircle2 = true; 
+    }
+    if(circlerad2>300){
+      smallcircle2 = false;
+    }   
+    if(smallcircle2 == true){
+     circlerad2++;
+    }else{
+     circlerad2--; 
+    }
+    circle(400,700,circlerad2);
+    
+    //second one
+    
+            if(circlerad3<40){
+     smallcircle3 = true; 
+    }
+    if(circlerad3>300){
+      smallcircle3 = false;
+    }   
+    if(smallcircle3 == true){
+     circlerad3++;
+    }else{
+     circlerad3--; 
+    }
+    circle(400,300,circlerad3);
+    //second one
+    
+    //third one
+                if(circlerad4<40){
+     smallcircle4 = true; 
+    }
+    if(circlerad4>300){
+      smallcircle4 = false;
+    }   
+    if(smallcircle4 == true){
+     circlerad4++;
+    }else{
+     circlerad4--; 
+    }
+    circle(500,450,circlerad4);
+    
+    //third one
+    
+    //fourth one
+                    if(circlerad5<40){
+     smallcircle5 = true; 
+    }
+    if(circlerad5>300){
+      smallcircle5 = false;
+    }   
+    if(smallcircle5 == true){
+     circlerad5++;
+    }else{
+     circlerad5--; 
+    }
+    circle(700,600,circlerad5);
+    //fourth one
+    println(mouseX,mouseY);
+    
+    
+    //evilcircle
+    float evilcirclespeed = 3;
+        fill(#B20B0B);
+    circle(evilcircleposx,evilcircleposy, 40);
+   if(evilcircleposx>thingyposx){
+    evilcircleposx = evilcircleposx - evilcirclespeed;
+   } else{
+    evilcircleposx = evilcircleposx + evilcirclespeed;
+   }
+    if(evilcircleposy>thingyposy){
+     evilcircleposy = evilcircleposy - evilcirclespeed; 
+    }else{
+     evilcircleposy = evilcircleposy + evilcirclespeed; 
+    }
+    
+    
+    
+        }
   } else if (stage == 6) {
     //Not Frigreetingly goodbye
   } else if (stage == 7) {
@@ -445,5 +576,5 @@ void draw() {
   fill(#34D32D);
   circle(thingyposx, thingyposy, 20);
     customPress(); // calls the custompress function
-
+  
 }
