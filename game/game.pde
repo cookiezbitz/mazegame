@@ -47,6 +47,20 @@ float circlerad3 = 150;
 float circlerad4 = 250;
 float circlerad5 = 99;
 
+
+float bosslevelopening1;
+float bosslevelopening2;
+float bosslevelopening3;
+float bosslevelopening4;
+
+float bosslevelopeningspeed;
+
+boolean movebosslevelopening1;
+boolean movebosslevelopening2;
+boolean movebosslevelopening3;
+boolean movebosslevelopening4;
+
+
 float hp = 100;
 color c1 = color(0, 255, 0);
 color c2 = color(255, 0, 0);
@@ -586,7 +600,7 @@ void draw() {
   
     //Frigreetingly goodbye
   } else if (stage == 6) {
-    println(mouseX,mouseY);
+//    println(mouseX,mouseY);
              fill(0);
     triangle(44,0, 800,350, 1200,0);
     rect(800,0,400,350);
@@ -620,6 +634,18 @@ void draw() {
       bossposy = 0;
       intro = true;
       stage7setup = false;
+      
+      bosslevelopening1 = -1;
+      bosslevelopening2 = -1;
+      bosslevelopening3 = -1;
+      bosslevelopening4 = -1;
+      bosslevelopeningspeed = 1;
+      
+      //TESTING CODE
+            intro = false;
+      bosslevelbegin = true;
+
+      //TESTING CODE
       
 
     }
@@ -655,11 +681,37 @@ void draw() {
     
     }
     
+    //code for moving door thing
+    if(bosslevelopening1<=0){
+      movebosslevelopening1 = true;
+    }
+    if(bosslevelopening1 >=800){
+     movebosslevelopening1 = false; 
+    }
+    if(movebosslevelopening1 ==true){
+     bosslevelopening1+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening1 -= bosslevelopeningspeed; 
+    }
+    
+    
           if(bosslevelbegin == true){
-            println("next stagE");
+        //    println("next stagE");
         background(255);
             fill(#FF0000);
     circle(bossposx,bossposy,60);
+    
+    fill(0);
+    rect(850,0,10,800);
+        rect(0,300,1200,10);
+            rect(350,0,10,800);
+        rect(0,500,1200,10);
+        
+        fill(255);
+        
+        rect(850,bosslevelopening1,10,30);
+        
+    println(mouseX,mouseY);
     
       }
       
