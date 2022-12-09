@@ -2,6 +2,7 @@
 //maze game
 import java.util.HashSet;
 HashSet<Integer> keysDown = new HashSet<Integer>();
+
 int lastspawned = 0; //seconds between the last spawn time of the object
 int currenttime = 0; // variable for the timer
 float thingyposx; //x position of the ball
@@ -13,6 +14,7 @@ int deaths; //number of deaths
 int stars; // number of stars the player collected
 int startemp; // temporary variable for star, before confirming it is collected
 boolean playermove = true; // allows or disallows  player movement
+boolean allowdeath = true;
 
 float killlaserposx; // the x and y variables of the laser found in stage 3
 float killlaserposx2; // the x and y variables of the laser found in stage 3
@@ -52,6 +54,13 @@ color barcolor;
 float healthbarlength = 200;
 float amt;
 boolean overburn = true;
+boolean intro = true;
+boolean bosslevelbegin = false;
+
+        float bossposx;
+    float bossposy;
+    float counter;
+    boolean stage7setup = true;
 
 
 void setup() {
@@ -59,7 +68,7 @@ void setup() {
   size(1200, 800);
 
   noStroke();
-  stage = 5;
+  stage = 7;
   killlaserposx2 = 540;
   killlaserposx3 = 890;
   evilcircleposx = 400;
@@ -68,7 +77,7 @@ void setup() {
 }
 void draw() {
 
-  background(255);
+ // background(255);
   fill(0);
   
 
@@ -87,6 +96,7 @@ void draw() {
  currenttime = millis();
  if(currenttime - lastspawned >= 500){
    playermove = true;
+   allowdeath = true;
    lastspawned += 500;
  }
 //timer code
@@ -332,7 +342,7 @@ void draw() {
         triangle(1000,100, 1000,300, 500,150);
     triangle(100,690, 100,500, 615,690);
     rect(380,0,240,120);
-//    println(mouseX,mouseY);
+    println(mouseX,mouseY);
     
     
     float evilcirclespeed = 3;
@@ -424,22 +434,32 @@ void draw() {
       println(stars);
     }
     }
-    
-    
+        
     //stage 5 begins
+    
   } else if (stage == 5) {
     
-        if (!spawned) {
-          float puppy = int(random(1,2));
+
+    
+         if (!spawned) {
+          float puppy = int(random(0,3));
+          
+          
           if(puppy == 1){
       thingyposx = 600;
       thingyposy = 150;
-          } else{
+          } 
+          if(puppy == 2){
             thingyposx = 200;
             thingyposy = 400;
-      playermove = false;
-      spawned = true;
+
     }
+          playermove = false;
+      spawned = true;
+      allowdeath = true;
+         }
+         
+         
              fill(#432B2B);
     rect(380,0,240,120);
             if(wallcolor == get(int(thingyposx),int(thingyposy))){
@@ -449,7 +469,9 @@ void draw() {
     }
     
     
-    //circlefunction
+    
+    
+     //circlefunction
     
     if(circlerad1<40){
      smallcircle1 = true; 
@@ -525,7 +547,9 @@ void draw() {
     }
     circle(700,600,circlerad5);
     //fourth one
-    println(mouseX,mouseY);
+  //  println(mouseX,mouseY);
+    
+    
     
     
     //evilcircle
@@ -543,13 +567,107 @@ void draw() {
      evilcircleposy = evilcircleposy + evilcirclespeed; 
     }
     
-    
-    
-        }
+        if(circleCircle(thingyposx,thingyposy,10,evilcircleposx,evilcircleposy,10) == true){
+                  spawned = false;
+                  
+      deaths++;
+      allowdeath = false;
+      startemp = 0;
+    }
+          fill(#2efe2e);
+      rect(1100,700,100,100);
+                      if (circleRect(thingyposx, thingyposy, 20,1100,700,100,100) == true) {
+      stage = 6;
+      stars = stars+startemp;
+      startemp = 0;
+      spawned = false;
+      println(stars);
+    }
+  
+    //Frigreetingly goodbye
   } else if (stage == 6) {
+    println(mouseX,mouseY);
+             fill(0);
+    triangle(44,0, 800,350, 1200,0);
+    rect(800,0,400,350);
+       rect(800,500,400,350);
+    triangle(0,100, 0,800, 1200,700);
+           rect(0,700,800,350);
+                     fill(#2efe2e);
+      rect(1100,350,100,150);
+                            if (circleRect(thingyposx, thingyposy, 20,1100,350,100,150) == true) {
+      stage = 7;
+      stars = stars+startemp;
+      startemp = 0;
+      spawned = false;
+      println(stars);
+    }
+    
     //Not Frigreetingly goodbye
   } else if (stage == 7) {
-    //Neutral goodbye
+
+    
+        if (!spawned) {
+      thingyposx = 550;
+      thingyposy = 550;
+      playermove = false;
+      spawned = true;
+    }
+    
+    
+
+    if(stage7setup == true){
+      bossposy = 0;
+      intro = true;
+      stage7setup = false;
+      
+
+    }
+      
+
+
+      
+    }
+    if(intro == true){
+   //   println("working");
+    background(0);
+    fill(255);
+    rect(400,400,300,300);
+
+    bossposx = 550;
+    counter += .5;
+    if(bossposy <300){
+     bossposy +=.5; 
+  //   counter +=.5;
+    }if(bossposy > 300){
+     bossposy = 300; 
+    // counter += .5;
+    }
+    println(counter);
+    if(counter>400){
+      
+      intro = false;
+      bosslevelbegin = true;
+    }
+    
+    fill(#FF0000);
+    circle(bossposx,bossposy,60);
+    
+    }
+    
+          if(bosslevelbegin == true){
+            println("next stagE");
+        background(255);
+            fill(#FF0000);
+    circle(bossposx,bossposy,60);
+    
+      }
+      
+                wallcolor = #000000;
+              if(wallcolor == get(int(thingyposx),int(thingyposy))){
+            spawned = false;
+      deaths++;
+      startemp = 0;
   }
   
   
@@ -576,5 +694,6 @@ void draw() {
   fill(#34D32D);
   circle(thingyposx, thingyposy, 20);
     customPress(); // calls the custompress function
-  
+
+
 }
