@@ -644,15 +644,15 @@ void draw() {
       bosslevelopening1 = -1;
       bosslevelopening2 = -1;
       bosslevelopening3 = -1;
-      bosslevelopening4 = -1;
+      bosslevelopening4 = 500;
             bosslevelopening2h = 849;
       bosslevelopening3h = -1;
       bosslevelopening4h = -1;
       bosslevelopeningspeed = 1;
       
       //TESTING CODE
-            intro = false;
-      bosslevelbegin = true;
+  //          intro = false;
+//      bosslevelbegin = true;
 
       //TESTING CODE
       
@@ -667,19 +667,19 @@ void draw() {
    //   println("working");
     background(0);
     fill(255);
-    rect(400,400,300,300);
+    rect(400,500,300,300);
 
     bossposx = 550;
     counter += .5;
-    if(bossposy <300){
+    if(bossposy <400){
      bossposy +=.5; 
   //   counter +=.5;
-    }if(bossposy > 300){
-     bossposy = 300; 
+    }if(bossposy > 400){
+     bossposy = 400; 
     // counter += .5;
     }
     println(counter);
-    if(counter>400){
+    if(counter>500){
       
       intro = false;
       bosslevelbegin = true;
@@ -736,30 +736,45 @@ void draw() {
     }
     //2ND ROW OF DOORS
     //3RD ROW OF DOOR
-            if(bosslevelopening2<=0){
-      movebosslevelopening2 = true;
+    //THIS IS UNFINISHED THIS IS UNFINISHED THIS IS UNFINISHED THIS IS UNFINISHED
+            if(bosslevelopening3<=0){
+      movebosslevelopening3 = true;
     }
-    if(bosslevelopening2 >=335){
-     movebosslevelopening2 = false; 
+    if(bosslevelopening3 >=285){
+     movebosslevelopening3 = false; 
     }
-    if(movebosslevelopening2 ==true){
-     bosslevelopening2+= bosslevelopeningspeed;
+    if(movebosslevelopening3 ==true){
+     bosslevelopening3+= bosslevelopeningspeed;
     } else{
-     bosslevelopening2 -= bosslevelopeningspeed; 
+     bosslevelopening3 -= bosslevelopeningspeed; 
     }
     
     
-            if(bosslevelopening2h<=850){
-      movebosslevelopening2h = true;
+            if(bosslevelopening3h<=0){
+      movebosslevelopening3h = true;
     }
-    if(bosslevelopening2h >=1185){
-     movebosslevelopening2h = false; 
+    if(bosslevelopening3h >=335){
+     movebosslevelopening3h = false; 
     }
-    if(movebosslevelopening2h ==true){
-     bosslevelopening2h+= bosslevelopeningspeed;
+    if(movebosslevelopening3h ==true){
+     bosslevelopening3h+= bosslevelopeningspeed;
     } else{
-     bosslevelopening2h -= bosslevelopeningspeed; 
+     bosslevelopening3h -= bosslevelopeningspeed; 
     }
+    
+    
+                if(bosslevelopening4<=500){
+      movebosslevelopening4 = true;
+    }
+    if(bosslevelopening4 >=775){
+     movebosslevelopening4 = false; 
+    }
+    if(movebosslevelopening4 ==true){
+     bosslevelopening4+= bosslevelopeningspeed;
+    } else{
+     bosslevelopening4 -= bosslevelopeningspeed; 
+    }
+    
     
     
     
@@ -782,11 +797,12 @@ void draw() {
         
         fill(255);
         
-        rect(850,bosslevelopening1,10,30);
-          rect(bosslevelopening2,300,30,10);
-                    rect(bosslevelopening2h,300,30,10);
-                  rect(850,bosslevelopening3,10,30);
-                          rect(850,bosslevelopening4,10,30);
+        rect(850,bosslevelopening1,10,40);
+          rect(bosslevelopening2,300,40,10);
+                    rect(bosslevelopening2h,300,40,10);
+                  rect(350,bosslevelopening3,10,30);
+                  rect(bosslevelopening3h,500,40,10);
+                          rect(350,bosslevelopening4,10,40);
                           
 
     println(mouseX,mouseY);
@@ -794,7 +810,8 @@ void draw() {
       }
       
                 wallcolor = #000000;
-              if(wallcolor == get(int(thingyposx),int(thingyposy))){
+                if(circleColor(thingyposx,thingyposy, 20, wallcolor,.5)){
+              
             spawned = false;
       deaths++;
       startemp = 0;

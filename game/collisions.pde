@@ -8,6 +8,19 @@ boolean pointCircle(float px, float py, float cx, float cy, float cr){
   }  
 }
  
+ boolean circleColor(float cx1, float cy1, float cr1, color objcolor, float tolerance){
+         if(objcolor == get(int(thingyposx + tolerance*cr1),int(thingyposy ))
+         || objcolor == get(int(thingyposx - tolerance*cr1),int(thingyposy ))
+        || objcolor == get(int(thingyposx),int(thingyposy - tolerance*cr1))
+        || objcolor == get(int(thingyposx),int(thingyposy + tolerance*cr1))
+        ){
+        return true;
+        }
+        else{
+          return false;
+        }
+ }
+ 
 boolean circleCircle(float cx1, float cy1, float cr1, float cx2, float cy2, float cr2){
   if(dist(cx1, cy1, cx2, cy2) < cr1 + cr2){
     return true;
